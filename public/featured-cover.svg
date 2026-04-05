@@ -1,0 +1,20 @@
+<svg width="1600" height="1100" viewBox="0 0 1600 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1100" fill="#DDE3E5"/>
+  <rect width="1600" height="1100" fill="url(#mist)"/>
+  <path d="M0 786L198 634L337 690L494 500L659 578L875 332L1066 454L1244 264L1434 378L1600 262V1100H0V786Z" fill="#254236"/>
+  <path d="M0 869L166 738L331 831L489 612L665 736L895 491L1067 608L1255 422L1452 564L1600 480V1100H0V869Z" fill="#355544"/>
+  <path d="M0 969L154 855L353 968L502 768L700 873L916 689L1081 790L1261 630L1462 758L1600 681V1100H0V969Z" fill="#20392D"/>
+  <path d="M126 765C166 712 220 665 288 624C327 600 371 581 420 567C460 555 495 551 523 556C509 603 490 649 466 693C438 744 405 789 367 829C330 869 289 901 244 925C203 947 157 963 105 972C99 914 106 845 126 765Z" fill="#CBD7C9"/>
+  <path d="M42 809C65 775 98 750 140 735C176 722 210 718 243 721C219 770 188 816 150 859C112 902 71 932 28 949C21 902 26 855 42 809Z" fill="#E7ECE7"/>
+  <path d="M499 677C543 626 596 592 659 575C635 660 596 733 540 793C495 842 442 885 382 921C390 835 429 754 499 677Z" fill="#E8EFE7" fill-opacity="0.75"/>
+  <ellipse cx="580" cy="318" rx="386" ry="91" fill="#F4F0EB" fill-opacity="0.9"/>
+  <ellipse cx="1119" cy="281" rx="287" ry="68" fill="#F7F3EE" fill-opacity="0.72"/>
+  <ellipse cx="874" cy="393" rx="507" ry="120" fill="#FCFAF8" fill-opacity="0.56"/>
+  <defs>
+    <radialGradient id="mist" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(870 130) rotate(90) scale(686 1067)">
+      <stop stop-color="#F9F5F0"/>
+      <stop offset="0.56" stop-color="#E7EAE9" stop-opacity="0.92"/>
+      <stop offset="1" stop-color="#D6DEDD"/>
+    </radialGradient>
+  </defs>
+</svg>

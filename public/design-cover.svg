@@ -1,0 +1,24 @@
+<svg width="1200" height="820" viewBox="0 0 1200 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="820" rx="40" fill="#F8F4EE"/>
+  <rect x="0" y="770" width="1200" height="12" fill="#B77445"/>
+  <rect x="805" y="132" width="70" height="70" rx="10" fill="#3E3D3B"/>
+  <rect x="885" y="132" width="70" height="70" rx="10" fill="#8A8782"/>
+  <rect x="965" y="132" width="70" height="70" rx="10" fill="#C8C5C1"/>
+  <rect x="1045" y="132" width="70" height="70" rx="10" fill="#EAE7E1"/>
+  <rect x="805" y="234" width="70" height="70" rx="10" fill="#9C531C"/>
+  <rect x="885" y="234" width="70" height="70" rx="10" fill="#BF6F33"/>
+  <rect x="965" y="234" width="70" height="70" rx="10" fill="#D98A3F"/>
+  <rect x="805" y="336" width="70" height="70" rx="10" fill="#3E7E43"/>
+  <rect x="885" y="336" width="70" height="70" rx="10" fill="#B68E48"/>
+  <rect x="965" y="336" width="70" height="70" rx="10" fill="#BE4937"/>
+  <rect x="1045" y="336" width="70" height="70" rx="10" fill="#3C77B1"/>
+  <text x="82" y="225" fill="#2E2723" font-family="Georgia, serif" font-size="88" letter-spacing="-2">从冷灰到暖褐</text>
+  <text x="82" y="284" fill="#7B7068" font-family="Arial, sans-serif" font-size="34">一次博客设计系统的进化</text>
+  <path d="M82 322H364" stroke="#B77445" stroke-width="6" stroke-linecap="round"/>
+  <text x="82" y="424" fill="#998D84" font-family="Arial, sans-serif" font-size="18" letter-spacing="4">TYPOGRAPHY</text>
+  <text x="82" y="454" fill="#6F655D" font-family="Arial, sans-serif" font-size="24">Cormorant Serif</text>
+  <text x="82" y="486" fill="#6F655D" font-family="Arial, sans-serif" font-size="24">DM Sans</text>
+  <text x="82" y="518" fill="#6F655D" font-family="Arial, sans-serif" font-size="24">JetBrains Mono</text>
+  <text x="803" y="112" fill="#B9ADA4" font-family="Arial, sans-serif" font-size="18" letter-spacing="4">PALETTE</text>
+  <text x="1025" y="690" fill="#D6C6BB" font-family="Arial, sans-serif" font-size="18">#B77445</text>
+</svg>

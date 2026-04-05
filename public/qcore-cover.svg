@@ -1,0 +1,34 @@
+<svg width="1200" height="820" viewBox="0 0 1200 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="820" rx="40" fill="url(#bg)"/>
+  <g filter="url(#shadow)">
+    <circle cx="621" cy="360" r="172" fill="#D8703D"/>
+    <path d="M621 139L660 161L703 145L726 184L772 186L782 231L824 251L820 297L855 327L836 369L859 409L827 443L836 488L794 509L784 554L739 557L717 596L673 584L636 608L599 584L555 596L533 557L488 554L478 509L436 488L445 443L413 409L436 369L417 327L452 297L448 251L490 231L500 186L546 184L569 145L612 161L621 139Z" fill="#B85D30"/>
+    <circle cx="621" cy="360" r="128" fill="#E97F48"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="432" y="282" width="378" height="156" rx="72" fill="#FDF8F2"/>
+    <text x="492" y="382" fill="#4D92D8" font-family="Arial, sans-serif" font-size="92" font-weight="700">QCore</text>
+  </g>
+  <circle cx="543" cy="338" r="32" fill="#F7C48F"/>
+  <circle cx="693" cy="338" r="32" fill="#F7C48F"/>
+  <circle cx="548" cy="340" r="8" fill="#382F2A"/>
+  <circle cx="698" cy="340" r="8" fill="#382F2A"/>
+  <path d="M584 392C604 412 642 412 662 392" stroke="#6E3F2B" stroke-width="8" stroke-linecap="round"/>
+  <rect x="458" y="434" width="112" height="20" rx="10" fill="#DFECF7"/>
+  <text x="788" y="468" fill="#FFF1E9" font-family="Georgia, serif" font-size="54">Rust</text>
+  <defs>
+    <filter id="shadow" x="359" y="112" width="574" height="562" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="22"/>
+      <feGaussianBlur stdDeviation="24"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.371765 0 0 0 0 0.505882 0 0 0 0 0.654902 0 0 0 0.24 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+    </filter>
+    <linearGradient id="bg" x1="600" y1="0" x2="600" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8AD1FF"/>
+      <stop offset="1" stop-color="#B5E4FF"/>
+    </linearGradient>
+  </defs>
+</svg>
