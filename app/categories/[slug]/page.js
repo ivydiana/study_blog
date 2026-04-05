@@ -1,7 +1,13 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageIntroCard } from "@/components/PageIntroCard";
-import { getCategoryBySlug, getPostsByCategory } from "@/lib/site-data";
+import { categories, getCategoryBySlug, getPostsByCategory } from "@/lib/site-data";
+
+export function generateStaticParams() {
+  return categories.map((category) => ({
+    slug: category.slug
+  }));
+}
 
 export default async function CategoryDetailPage({ params }) {
   const { slug } = await params;
