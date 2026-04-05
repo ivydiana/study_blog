@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CalendarDays, Clock3, Folder } from "lucide-react";
+import { assetPath } from "@/lib/assets";
 
 export function FeaturedPost({ post }) {
   return (
     <article className="surface grid overflow-hidden rounded-card lg:grid-cols-[1.05fr_1.5fr]">
       <div className="relative min-h-[210px] lg:min-h-[258px]">
         <Image
-          src={post.image}
+          src={assetPath(post.image)}
           alt={post.title}
           fill
           className="object-cover"

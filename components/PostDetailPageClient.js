@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, CalendarDays, Clock3 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Navbar } from "@/components/Navbar";
+import { assetPath } from "@/lib/assets";
 import { getInitialTheme } from "@/lib/theme";
 
 export function PostDetailPageClient({ post }) {
@@ -67,7 +68,7 @@ export function PostDetailPageClient({ post }) {
               <section className="surface overflow-hidden rounded-card">
                 <div className="relative aspect-[2.18/1] w-full">
                   <Image
-                    src={post.image}
+                    src={assetPath(post.image)}
                     alt={post.title}
                     fill
                     priority

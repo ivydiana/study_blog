@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Github, Mail } from "lucide-react";
+import { assetPath } from "@/lib/assets";
 
 function KaggleIcon(props) {
   return (
@@ -45,7 +46,7 @@ export function ProfileCard() {
       <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-full border border-line/90 bg-white/90 p-1 shadow-[0_10px_24px_rgba(74,52,35,0.08)]">
         <div className="relative h-full w-full overflow-hidden rounded-full">
           <Image
-            src="/ivy-avatar.png"
+            src={assetPath("/ivy-avatar.png")}
             alt="Ivy Ding avatar"
             fill
             className="object-cover"

@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CalendarDays, Clock3, Folder } from "lucide-react";
+import { assetPath } from "@/lib/assets";
 
 export function PostCard({ post }) {
   return (
     <article className="surface group overflow-hidden rounded-card transition-all duration-300 hover:-translate-y-1 hover:shadow-cardHover">
       <div className="relative aspect-[1.8/1] overflow-hidden">
         <Image
-          src={post.image}
+          src={assetPath(post.image)}
           alt={post.title}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
