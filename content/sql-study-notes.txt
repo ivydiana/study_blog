@@ -1,0 +1,525 @@
+SQL
+	•	内容涵盖SQL基础语句使用，leetcode案例，业务实际应用
+SQL基础语句
+例子：
+SELECT …… （选择哪列）
+FROM …… （从哪个表）
+WHERE ……；（筛选的条件）（每次查询必须以；结尾）
+
+1.	SELECT用法：查询全表数据/指定列
+SELECT * FROM table_name; （查询全表，*为全部）
+SELECT column1 FROM table_name; （单列）
+SELECT column1,column2 FROM table_name; （多列）
+2.	AS用法：取别名
+1）	取列新名
+SELECT t.column1 AS new_name FROM table_name; (AS后new_name为sql中替代column名称)
+2）	取表新名
+SELECT t.column1 FROM table_name AS t; (t为table_name代替名称)
+3.	DISTINCT用法：去重查询
+SELECT DISTINCT column1 FROM table_name; (省略表内重复的行内容)
+4.	LIMIT用法：限制结果行数
+SELECT * FROM table_name LIMIT 10;（获取前十行内容）
+5.	OFFSET用法：分页查询
+SELECT * FROM table_name OFFSET 10;(跳过前10条，取接下来10条)
+6.	>,<.=用法：进行比较
+SELECT * FROM table_name WHERE price>100;(价格大于100)
+SELECT * FROM table_name WHERE price=100;(价格等于100)
+SELECT * FROM table_name WHERE price<100;(价格小于100)
+SELECT * FROM table_name WHERE price>=100;(价格大于等于100)
+SELECT * FROM table_name WHERE price<=100;（(价格小于等于100)
+	•	日期函数
+SELECT CURDATE();
+SELECT CURRENT_DATE;
+	•	日期函数（日期加减）
+用来计算订单发货/付款期限
+SELECT DATE_ADD(order_date,INTERVAL 7 DAY) AS due_date FROM orders;(MYSQL)
+SELECT order_date + INTERVAL '7 days' AS due_date FROM orders;(PostgreSQL)
+	•	空值处理（COALESCE）
+SELECT COALESCE(bonus,0) AS effective_bonus FROM employee;(如果bonus为0，则空值返0)
+	•	空值处理（NULLIF）
+如果price为0，返回NULL, 否则返回price
+SELECT NULLIF(price,0) AS valid_price FROM products;
+字符串函数
+1.提取年份/月份
+SELECT YEAR(order_date) AS year, MONTH(order_date) AS month FROM orders;
+2.转大/小写
+SELECT UPPER(name) AS uppercase_name FROM users;
+SELECT LOWER(email) AS lowercase_email FROM users;
+3.截取子串
+SELECT SUBSTRING(name,1,3) AS first_3_chars FROM users;
+4.去除空格
+SELECT TRIM(' ABC ') AS trimmed_str;
+SELECT LTRIM(' abc') AS left_trimmed;
+SELECT RTRIM('ABC ') AS right_trimmed;
+条件查询
+1.	WHERE 用法
+SELECT column_name1 FROM table_name WHERE column_name1 = 'apple'; (寻找某一列名称是apple的行，寻找字符是单引号)
+2.	AND 用法
+SELECT column_name1 FROM table_name WHERE column_name1 = 'apple' AND column_name2 > 100; (寻找某一列名称是apple的行和另外指定一列数值大于100（两个条件必须都满足）)
+3.	OR 用法
+SELECT column_name1 FROM table_name WHERE column_name1= 'apple' OR column_name2 > 100; (寻找某一列名称是apple的行和另外指定一列数值大于100（满足其中一个条件即可）)
+4.	空值判断
+SELECT column_name1 FROM table_name WHERE column_name1 IS NULL;(查找这一列有空值的行)
+SELECT column_name1 FROM table_name WHERE column_name1 IS NOT NULL;（查找这一列没有空值的行）
+	•		EXISTS/NOT EXISTS
+SELECT 列名
+FROM 表A
+WHERE EXISTS (
+    SELECT 1
+    FROM 表B
+    WHERE 条件
+);
+	•	条件表达式（CASE WHEN)
+SELECT name,score,
+        CASE 
+            WHEN score >= 90 THEN 'A'
+            WHEN score >= 80 THEN 'B'
+            ELSE 'C'
+        END AS grade
+FROM student;
+	•	字符串长度计算
+查询所有无效推文的编号（ID）。当推文内容中的字符数严格大于 15 时，该推文是无效的。以任意顺序返回结果表。
+SELECT tweet_id
+FROM Tweets
+WHERE length(content)>15
+范围查询
+数字区间内
+SELECT column_name1 FROM table_name WHERE column_name1 BETWEEN 10 AND 100;（列表数值在10到100之间的）
+不在数字区间内
+SELECT column_name1 FROM table_name WHERE column_name1 NOT BETWEEN 10 AND 100;（列表数值不在10和100之间的）
+	•	字符区间内
+SELECT column_name1 FROME table_name WHERE column_name1 IN ('A','B','C');（列表字符内容包括在A,B,C的行数）
+	•	不在字符区间内
+SELECT column_name1 FROME table_name WHERE column_name1 NOT IN ('A','B','C');
+	•	！字符要用' '单引号
+	•	模糊查询
+	•	%用法
+SELECT * FROM table_name WHERE column_name LIKE 'Mr.%';(寻找Mr.开头的行)
+SELECT * FROM table_name WHERE column_name LIKE '%RIGHT';(寻找RIGHT结尾的行)
+	•	_用法
+SELECT * FROM table_name WHERE column_name LIKE 'Appl_';(寻找Appl后还有任意一个字符的行)
+	•	不匹配查询
+SELECT * FROM table_name WHERE column_name NOT LIKE '%RIGHT';(寻找不是RIGHT结尾的行)
+	•	数值相关
+	•	COUNT用法：计算总行数
+SELECT COUNT（*） FROM table_name;
+也可以用于条件查询中：
+SELECT column_name1 FROM table_name WHERE count(column_name1)>10;(寻找某列重复内容/数字出现过10次以上的行)
+	•	COUNT(DISTINCT)用法：计算每个物品出现的次数
+SELECT COUNT(DISTINCT column_name1) FROM table_name;
+	•	SUM用法：求和
+SELECT SUM（column_name1）FROM table_name;
+	•	AVG用法：求平均值
+SELECT AVG（column_name1) FROM table_name;（指定列的均值）
+	•	MIN用法：最小值
+SELECT MIN（column_name1) FROM table_name;（指定列的最小值）
+	•	MAX用法：最大值
+SELECT MAX（column_name1) FROM table_name;(指定列的最大值)
+	•	四舍五入
+SELECT ROUND(price,2) AS rounded_price FROM products;
+	•	取整
+SELECT FLOOR(3.8) AS floor_val;(向下取整)
+SELECT CEIL(3.2) AS ceil_val;(向上取整)
+分组用法
+	•	GROUP BY用法：分组统计
+SELECT category,count(*) FROM table_name GROUP BY category;(获取列中种类和出现的次数)
+多字段分组
+SELECT year,category,SUM(amount) FROM table_name GROUP BY year,category;(获取列中不同种类不同年份出现的次数)
+	•	HAVING用法：分组后过滤
+SELECT category,COUNT(*) AS count FROM table_name GROUP BY category HAVING count > 10;(寻找出现次数大于10次的种类)
+过滤后分组
+SELECT category,COUNT(*) AS count FROM table_name WHERE year = 2025 GROUP BY category;(先找到2025年份的种类再分组)
+	•	ORDER BY 用法：分组排序
+! ODERBY后面的ASC升序 DESC降序
+SELECT category,AVG(score) AS avg_score FROM table_name GROUP BY category ORDER BY avg_score DESC;(种类分组后再按照平均分数降序)
+	•	多聚合统计
+SELECT category,COUNT(*) AS cnt,SUM(amount) AS total,AVG(price) AS avg_price FROM table_name GROUP BY category;(获取种类，总单数，总金额，均价)
+多表连接
+1.	内连接（INNER JOIN）
+SELECT t1.column1 FROM table_name1 AS t1 INNER JOIN table_name2 AS t2 ON t1.column1 = t2.column2;(仅返回两表相连的值)
+2.	左连接（LEFT JOIN/LEFT OUTER JOIN）
+SELECT t1.price FROM table_name1 AS t1 LEFT JOIN table_name2 AS t2 ON t1.order_id = t2.order_id; (返回左表所有行，右表匹配不到的就是NULL)
+3.	右连接（RIGHT JOIN/RIGHT OUTER JOIN）
+SELECT t2.price FROM table_name1 AS t1 RIGHT JOIN table_name2 AS t2 ON t1.order_id = t2.order_id;  (返回右表所有行，左表匹配不到的就是NULL)
+4.	全连接（FULL JOIN/FULL OUTER JOIN）
+SELECT * FROM table_name1 AS t1 FULL JOIN table_name2 AS t2 ON t1.order_id = t2.order_id;
+(返回两表全部的行，匹配不到的填写NULL)
+5.	交叉连接
+SELECT * FROM table_name1 AS t1 CROSS JOIN table_name2 AS t2;
+6.	多表连接
+SELECT 
+    u.name,
+    o.order_id,
+    p.product_name 
+FROM users u 
+INNER JOIN order AS o ON u.order_id = o.order_id
+INNER JOIN product AS p ON o.order_id = p.order_id;
+(三表连接)
+7.	自连接
+当表中的数据具有某种内在关系，并且这种关系存储在同一个表的不同行中时，就需要自连接
+-- 查询工资高于部门平均工资的员工
+SELECT 
+    e1.employee_id,
+    e1.salary,
+    e1.department_id,
+    AVG(e2.salary) AS avg_dept_salary
+FROM employees e1
+JOIN employees e2 ON e1.department_id = e2.department_id
+GROUP BY e1.employee_id, e1.salary, e1.department_id
+HAVING e1.salary > AVG(e2.salary);
+子查询
+在查询中需要用到另一个查询的结果，这时就可以使用子查询
+子查询类型
+1.	标量子查询
+-- 返回平均工资（一个值）
+SELECT name, salary
+FROM employees
+WHERE salary > (SELECT AVG(salary) FROM employees);
+2.	行子查询
+-- 返回工资最高且入职最早的员工信息
+SELECT * FROM employees
+WHERE (salary, hire_date) = (
+    SELECT MAX(salary), MIN(hire_date)
+    FROM employees
+);
+3.	列子查询（返回一列）
+-- 返回销售部的所有员工
+SELECT name
+FROM employees
+WHERE department_id IN (
+    SELECT dept_id FROM departments 
+    WHERE dept_name = '销售部'
+);
+4.	表子查询（返回多行多列）
+-- 子查询作为临时表
+SELECT dept_name, avg_salary
+FROM (
+    SELECT d.dept_name, AVG(e.salary) AS avg_salary
+    FROM departments d
+    JOIN employees e ON d.dept_id = e.department_id
+    GROUP BY d.dept_name
+) AS dept_stats
+WHERE avg_salary > 5000;
+子查询位置
+	•		WHERE	 语句中
+-- 查找比部门平均工资高的员工
+SELECT name, salary, department_id
+FROM employees e1
+WHERE salary > (
+    SELECT AVG(salary)
+    FROM employees e2
+    WHERE e1.department_id = e2.department_id  -- 相关子查询
+);
+	•		FROM 语句中
+-- 查询每个部门的员工数量和平均工资
+SELECT d.dept_name, emp_count, avg_sal
+FROM departments d
+JOIN (
+    SELECT department_id, 
+           COUNT(*) AS emp_count,
+           AVG(salary) AS avg_sal
+    FROM employees
+    GROUP BY department_id
+) AS dept_stats ON d.dept_id = dept_stats.department_id;
+	•		SELECT 语句中
+-- 查询员工及其部门人数
+SELECT 
+    name,
+    salary,
+    department_id,
+    (SELECT COUNT(*) 
+     FROM employees e2 
+     WHERE e2.department_id = e1.department_id) AS dept_count
+FROM employees e1;
+	•		HAVING 语句中
+-- 查找平均工资高于公司平均工资的部门
+SELECT department_id, AVG(salary) AS avg_salary
+FROM employees
+GROUP BY department_id
+HAVING AVG(salary) > (
+    SELECT AVG(salary) FROM employees
+);
+5.	ALL/ANY 语句中
+-- 查询工资大于部门30中任意一个员工的员工
+SELECT * FROM employees
+WHERE salary > ANY (
+    SELECT salary FROM employees
+    WHERE department_id = 30
+);
+
+-- 查询工资大于部门30中所有员工的员工
+SELECT * FROM employees
+WHERE salary > ALL (
+    SELECT salary FROM employees
+    WHERE department_id = 30
+);
+6.	EXISTS/NOT EXISTS 语句中
+-- 查询至少有一个订单的客户
+SELECT * FROM customers c
+WHERE EXISTS (
+    SELECT 1 FROM orders o
+    WHERE o.customer_id = c.customer_id
+);
+
+-- 查询没有下属的管理者
+SELECT * FROM employees e1
+WHERE e1.is_manager = 'Y'
+  AND NOT EXISTS (
+    SELECT 1 FROM employees e2
+    WHERE e2.manager_id = e1.emp_id
+);
+7.	ANY 语句中
+-- 查询和最高工资一样的员工
+SELECT * FROM employees
+WHERE salary = (
+    SELECT MAX(salary) FROM employees
+);
+CTE公共表表达式（WITH子句）
+WITH year_sales AS(
+    SELECT year, SUM(amount) AS total
+    FROM sales
+    GROUP BY year
+)
+SELECT * FROM year_sales;
+窗口函数（！重要）
+PARTITION BY/GROUP BY区别：
+！PARTITION 不聚合且行数不变 ｜ 	GROUP BY 聚合且行数减小
+SELECT *,RANK() OVER (ORDER BY sales DESC) AS rank FROM prodects;
+1.	排名窗口函数
+问：ROW_NUMBER/RANK/DENSE_RANK 三者的区别
+ROW_NUMBER:
+为分区中每行数据分配一个序列号，序列号从1开始（1，2，3，4，5）
+
+SELECT *,ROW_NUMBER() OVER (PARTITION BY category ORDER BY price DESC) AS rank
+FROM products;(PARTITION BY 指的是对category分组,相当于group by的作用)
+
+RANK:
+返回当前行在分区中的名次，如果存在名词相同的数据，后续的排名将会产生跳跃（1，2，2，2，5）
+
+SELECT *,RANK() OVER (ORDER BY sales DESC) AS rank FROM products;
+	•	
+	•	DENSE_RANK
+	•	返回当前行在分区中的名次，即使存在名词相同的数据，后续的排名也是连续值（1，2，2，2，3）
+	•	
+	•	SELECT *,DENSE_RANK OVER(ORDER BY sales DESC) AS rank FROM products;
+	•	PERCENT_RANK
+	•	SELECT name,score,PERCENT_RANK OVER(ORDER BY score DESC) AS percent_rank FROM classes;
+	•		聚合窗口函数
+AVG()
+MIN()
+MAX()
+SUM()
+COUNT()
+问：聚合函数和窗口聚合函数的区别是什么
+聚合函数将多行数据合并成一行（减少行数），而窗口聚合函数则保持原有行数，在每一行上提供聚合结果
+	•		取值窗口函数
+LAG()
+返回窗口内当前行之前的第N行数据
+LEAD()
+返回窗口内当前行之后的第N行数据
+FIRST_VALUE/LAST_VALUE
+返回窗口内的第一行函数/最后一行函数
+NTH_VALUE
+返回窗口内第N行函数
+
+LAG()
+SELECT *，LAG(price,1) OVER(ORDER BY order DESC) AS yesterday_price FROM sales
+LEAD()
+SELECT *，LEAD(price,1) OVER(ORDER BY order DESC) AS next_day_price FROM sales
+	•	查询重复行
+WITH duplicate_data AS (
+    SELECT email, COUNT (*) AS cnt
+    FROM users
+    GROUP BY email
+    HAVING cnt > 1
+)
+SELECT U. * FROM users u JOIN duplicate_data d ON u. email = d.email;
+	•	删除重复行（ROW_NUMBER()窗口函数）
+找出 users 表中 按 email 重复的记录。删除重复的行，只保留每个 email 的 第一条记录
+WITH cte AS (
+    SELECT id, ROW_NUMBER() OVER(PARTITION BY email ORDER BY id) AS rn
+    FROM users
+)
+
+DELETE FROM users
+WHERE id IN (
+    SELECT id FROM cte WHERE rn > 1
+);
+	•	Top N 问题（每个分组取前三名）
+SELECT category, product, price, rank
+FROM (
+    SELECT category, product, price,
+            ROW_NUMBER) OVER (PARTITION BY category ORDER BY price DESC) AS rank
+        FROM products
+） AS sub
+WHERE rank <= 3;
+	•	累计求和(窗口函数)
+按照date排序，对每一行计算从第一天到当前行累计和
+不会将行合并，保留原来对每一行，并添加累计和这一列
+SELECT date, sales, SUM(sales) OVER(ORDER BY date) AS cumulative_sales FROM daily_sales;
+	•	同比/环比
+SELECT date, sales,
+        LAG (sales, 12) OVER (ORDER BY date) AS year
+_on_year，--同比（12个月前）
+        LAG (sales, 1) OVER (ORDER BY date) AS month
+-on_month -- 环比（上月）
+        ROUND((sales - LAG(sales,12) OVER (ORDER BY date)) / LAG(sales,12) OVER (ORDER BY date) * 100, 2) AS year_growth,
+        ROUND((sales - LAG(sales,1) OVER (ORDER BY date)) / LAG(sales,1) OVER (ORDER BY date) * 100, 2) AS month_growth
+FROM monthly_sales;
+创建数据表
+创建数据表前，我们要先了解每列数据的数据类型。
+类别
+常用数据类型
+说明
+例子
+数值型
+INT,INTEGER
+整数
+年龄INT
+
+DECIMAL(p,s)
+p是总位数，s是小数位数
+价格DECIMAL(10,2)
+
+FLOAT,DOUBLE
+近似浮点数，用于科学运算
+比例FLOAT
+字符型
+CHAR(n)
+固定字符的字符串
+国家符号CHAR(n)
+
+VARCHAR(n)
+可变长度的字符串
+姓名VARCHAR(n)
+
+TEXT
+长文本数据
+描述TEXT
+日期时间
+DATE
+仅日期
+生日DATE
+
+TIME
+仅时间
+上课时间TIME
+
+DATETIME
+日期加时间
+创建时间DATETIME
+
+TIMESTAMP
+含带时间戳
+更新时间
+布尔型
+BOOLEAN
+真/假值
+是否有效BOOLEAN
+其他
+JSON
+JSON格式数据
+配置信息
+
+BLOB
+二进制大对象
+头像图片BLOB
+创建数据
+CREATE TABLE users (
+    id INT PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    birthday DATE,
+    age INT CHECK ( age >= 18 ),
+    total_amount DECIMAL(10,2)
+);
+创建临时表
+CREATE TEMPORARY TABLE temp_sales AS
+SELECT user_id, SUM(account) AS total
+FROM orders
+WHERE year = 2023;
+递归查询
+SQL 专门用来处理树形/层级结构，相当于用一条sql查询整棵树
+WITH RECURSIVE hierarchy AS (
+    --1. 先找 ID = 1的人 
+    SELECT id, name, manger_id, 1 AS level
+    FROM employees WHERE id = 1 -- 根节点
+    
+    UNION ALL
+    
+    -- 2. 递归： 不断找谁的manager_id = 上一层的id
+    SELECT e.id, e.name, e.manger_id, h.level + 1 
+    FROM employee e 
+    JOIN hierarchy h ON e.manager_id = h.id
+)
+    SELECT * FROM hierarchy;
+添加列
+ALTER TABLE users ADD COLUMN log_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+修改列
+ALTER TABLE users RENAME COLUMN age TO years_old；
+删除列
+ALTER TABLE users DROP COLUMN temp_column;
+删除表
+DROP TABLE IF EXISTS old_table;
+	•	插入数据
+	•	单条
+INSERT INTO table_name(column_name1,column_name2) VALUES('content1','content2');
+	•	多条
+INSERT INTO table_name(column_name1,column_name2)
+VALUES('content1','content2'),('content3','content4');
+更新数据
+UPDATE user SET email = '123456789@gmail.com'WHERE id = 1;
+删除数据
+DELETE FROM users WHERE last_login < '2026-01-05';
+创建索引
+正常查询数据是每一行按照顺序依次查询，复杂度为O(N)。
+但是我们创建索引后，相当于在数据库建造了一个B+/B-的树，假设树的高度为logN,查询次数为100,000次，那么我只需要log2(1,000,000) 约等于20次获取到。
+
+INDEX 可以加快查询，但是会减缓写入的速度
+合建索引的字段：
+	•	经常出现在 WHERE 里的字段
+	•	经常 JOIN 的字段
+	•	区分度高的字段（例如：user_id, email）
+	•	常用于 ORDER BY
+不适合：
+	•	数据量很小的表
+	•	区分度很低的字段（例如：gender 只有男女）
+
+CREATE INDEX email ON users(email);
+CREATE UNIQUE INDEX idx_unique_email ON users(email);（唯一索引；意味着后续插入email不能出现重复字段）
+删除索引
+DROP INDEX idx_email ON users;
+删除视图
+DROP VIEW IF EXISTS monthly_sales_view;
+事务控制
+BEGIN TRANSACTION;
+UPDATE accounts SET balance = balance -100 WHERE id = 1;
+UPDATE accounts SET balance = balance + 100 WHERE id = 2;
+COMMIT; -- 提交事务
+-- or ROLLBACK; -- 回滚事务
+表查询
+EXPLAIN 查询
+当sql查询速度出现速度慢的时候，我们会经常调用EXPLAIN分析查询性能
+EXPLAIN SELECT * FROM orders WHERE user_id = 123;
+UNION/UNION ALL 合并结果 去重/不去重
+SELECT name FROM users UNION SELECT name FROM admins;
+SELECT name FROM users UNION ALL SELECT name FROM admins;
+交集查询
+返回同时满足两个条件的id
+SELECT id FROM users WHERE country = 'US' 
+INTERSECT
+SELECT id FROM premium_users;
+差集查询 (EXCEPT/MINUS)
+SELECT ID FROM users WHERE country = 'US'
+EXCEPT
+SELECT UD FROM premium_users;
+更新关联表数据（UPDATE JOIN)
+UPDATE orders o
+JOIN users u ON o.user_id = u.id
+SET o.discount = u.membership_level * 0.1;
+删除关联表数据（DELETE JOIN)
+DELETE o
+FROM orders o
+LEFT JOIN users u ON o.user_id = u.id
+WHERE u.id IS NULL; --删除无用户关联的订单
+

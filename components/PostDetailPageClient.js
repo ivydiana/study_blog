@@ -9,7 +9,7 @@ import { assetPath } from "@/lib/assets";
 import { postBodies } from "@/lib/site-data";
 import { getInitialTheme } from "@/lib/theme";
 
-export function PostDetailPageClient({ post }) {
+export function PostDetailPageClient({ post, rawBody = "" }) {
   const [isDark, setIsDark] = useState(getInitialTheme);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -120,6 +120,19 @@ export function PostDetailPageClient({ post }) {
                     </p>
                   </>
                 )}
+
+                {rawBody ? (
+                  <section className="space-y-4">
+                    <h2 className="editorial-title text-[1.9rem] leading-[1.02] text-ink md:text-[2.2rem]">
+                      完整学习笔记
+                    </h2>
+                    <div className="overflow-hidden rounded-[24px] border border-line/80 bg-black/25 shadow-[0_12px_30px_rgba(0,0,0,0.18)]">
+                      <pre className="overflow-x-auto whitespace-pre-wrap px-5 py-5 text-[13px] leading-7 text-[#f3e7eb] md:px-6 md:py-6">
+                        {rawBody}
+                      </pre>
+                    </div>
+                  </section>
+                ) : null}
               </div>
             </article>
           </section>
