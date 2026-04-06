@@ -1,0 +1,33 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" rx="48" fill="#141015"/>
+  <rect x="70" y="72" width="1460" height="756" rx="40" fill="url(#bg)"/>
+  <rect x="112" y="120" width="1376" height="660" rx="32" fill="#19141A" stroke="#3E3138"/>
+  <rect x="154" y="168" width="520" height="520" rx="30" fill="url(#panel)"/>
+  <rect x="736" y="186" width="600" height="20" rx="10" fill="#E8DDE1" fill-opacity="0.92"/>
+  <rect x="736" y="234" width="458" height="18" rx="9" fill="#8C7480" fill-opacity="0.65"/>
+  <rect x="736" y="300" width="488" height="16" rx="8" fill="#5A4851" fill-opacity="0.84"/>
+  <rect x="736" y="338" width="560" height="16" rx="8" fill="#5A4851" fill-opacity="0.72"/>
+  <rect x="736" y="376" width="520" height="16" rx="8" fill="#5A4851" fill-opacity="0.64"/>
+  <rect x="736" y="450" width="220" height="54" rx="27" fill="#2A2026"/>
+  <rect x="980" y="450" width="232" height="54" rx="27" fill="#2A2026"/>
+  <rect x="1234" y="450" width="170" height="54" rx="27" fill="#2A2026"/>
+  <rect x="736" y="560" width="668" height="140" rx="26" fill="#171215" stroke="#332831"/>
+  <path d="M280 246C280 224.909 297.091 207.818 318.182 207.818H509.818C530.909 207.818 548 224.909 548 246V341.455C548 362.546 530.909 379.636 509.818 379.636H318.182C297.091 379.636 280 362.546 280 341.455V246Z" fill="#2C2026" stroke="#D498AF" stroke-opacity="0.55" stroke-width="3.5"/>
+  <path d="M400.855 279.045V322.591M398.264 301.041L437.609 260.727M398.264 301.041L437.609 341.355" stroke="#F0E6EA" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M473.909 262.636H513.182C528.557 262.636 541.024 275.103 541.024 290.477V311.25C541.024 326.625 528.557 339.091 513.182 339.091H473.909" stroke="#F0E6EA" stroke-width="12" stroke-linecap="round"/>
+  <text x="220" y="615" fill="#F2E8EC" font-family="Georgia, 'Times New Roman', serif" font-size="100" font-weight="700">SQL</text>
+  <text x="222" y="668" fill="#CFA8B6" font-family="Inter, Arial, sans-serif" font-size="30" letter-spacing="2">STUDY NOTES</text>
+  <text x="780" y="610" fill="#E9DDE1" font-family="'SFMono-Regular', Consolas, monospace" font-size="28">SELECT name, score</text>
+  <text x="780" y="648" fill="#E9DDE1" font-family="'SFMono-Regular', Consolas, monospace" font-size="28">FROM students</text>
+  <text x="780" y="686" fill="#E9DDE1" font-family="'SFMono-Regular', Consolas, monospace" font-size="28">WHERE score &gt;= 90</text>
+  <defs>
+    <linearGradient id="bg" x1="92" y1="72" x2="1508" y2="828" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#181216"/>
+      <stop offset="1" stop-color="#231A20"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="154" y1="168" x2="674" y2="688" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#271C22"/>
+      <stop offset="1" stop-color="#171216"/>
+    </linearGradient>
+  </defs>
+</svg>
