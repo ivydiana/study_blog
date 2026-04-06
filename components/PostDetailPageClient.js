@@ -6,12 +6,14 @@ import { ArrowLeft, CalendarDays, Clock3 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { assetPath } from "@/lib/assets";
+import { postBodies } from "@/lib/site-data";
 import { getInitialTheme } from "@/lib/theme";
 
 export function PostDetailPageClient({ post }) {
   const [isDark, setIsDark] = useState(getInitialTheme);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const contentSections = postBodies[post.slug] ?? [];
 
   useEffect(() => {
     document.documentElement.dataset.theme = isDark ? "dark" : "light";
@@ -79,16 +81,45 @@ export function PostDetailPageClient({ post }) {
             </div>
 
             <article className="mt-8 border-t border-line/70 pt-8">
-              <div className="mx-auto max-w-[42rem] space-y-6 text-[16px] leading-8 text-muted">
-                <p>
-                  This is a placeholder reading page for <strong className="text-ink">{post.title}</strong>,
-                  designed to feel cinematic, quiet, and editorial rather than template-like.
-                </p>
-                <p>
-                  The structure is now ready for rich article content: markdown rendering, section blocks,
-                  image inserts, pull quotes, or footnotes can all be layered in without changing the
-                  overall rhythm of the page.
-                </p>
+              <div className="mx-auto max-w-[42rem] space-y-10 text-[15px] leading-8 text-muted md:text-[16px]">
+                {contentSections.length > 0 ? (
+                  contentSections.map((section) => (
+                    <section key={section.title} className="space-y-4">
+                      <h2 className="editorial-title text-[1.9rem] leading-[1.02] text-ink md:text-[2.2rem]">
+                        {section.title}
+                      </h2>
+
+                      {section.paragraphs?.map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+
+                      {section.bullets?.length ? (
+                        <ul className="space-y-2 pl-5 text-muted marker:text-accent">
+                          {section.bullets.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      ) : null}
+
+                      {section.code ? (
+                        <pre className="overflow-x-auto rounded-[22px] border border-line/80 bg-black/25 px-5 py-4 text-[13px] leading-6 text-[#f3e7eb] shadow-[0_12px_30px_rgba(0,0,0,0.18)]">
+                          <code>{section.code}</code>
+                        </pre>
+                      ) : null}
+                    </section>
+                  ))
+                ) : (
+                  <>
+                    <p>
+                      This is a placeholder reading page for{" "}
+                      <strong className="text-ink">{post.title}</strong>.
+                    </p>
+                    <p>
+                      The structure is ready for future markdown rendering, section blocks, pull quotes,
+                      and richer long-form content.
+                    </p>
+                  </>
+                )}
               </div>
             </article>
           </section>
